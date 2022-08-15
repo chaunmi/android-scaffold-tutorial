@@ -2,18 +2,19 @@
 
 buildscript {
 
-    val GRADLE_VERSION = "7.2.0"
-    val KOTLIN_VERSION = "1.6.10"
-
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:$GRADLE_VERSION")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION")
+        classpath("com.android.tools.build:gradle:${BuildConfig.ANDROID_GRADLE_PLUGIN_VERSION}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
     }
 }
 
@@ -21,7 +22,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
     }
 }
 
