@@ -2,6 +2,7 @@ package com.scaffold.tutorial
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
 import com.chaunmi.eventbus.core.FlowEventBus
 import com.chaunmi.eventbus.util.LogUtils
 import com.scaffold.tutorial.databinding.ActivityMainBinding
@@ -21,24 +22,28 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     binding.collectText.text = t
                 }
-
             }
         }
 
         FlowEventBus.withSticky<String>(EVENT_KEY).post(" change txt ${count++}")
 
-        FlowEventBus.withSticky<String>(EVENT_KEY).registerForever(eventObserver, dispatcher = Dispatchers.IO)
+        FlowEventBus.withSticky<String>(EVENT_KEY).observerForever(eventObserver, dispatcher = Dispatchers.IO)
+
         binding.startCollect.setOnClickListener {
             FlowEventBus.withSticky<String>(EVENT_KEY).post(" change txt ${count++}")
         }
 
         binding.stopCollect.setOnClickListener {
-            FlowEventBus.withSticky<String>(EVENT_KEY).unregister(eventObserver)
+            FlowEventBus.withSticky<String>(EVENT_KEY).removeObserver(eventObserver)
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     override fun onBackPressed() {
-        FlowEventBus.withSticky<String>(EVENT_KEY).unregister(eventObserver)
         finish()
     }
 }
