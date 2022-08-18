@@ -10,8 +10,8 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
 object FlowEventBus {
-    private val busMap = mutableMapOf<String, EventBus<*>>()
-    private val busStickMap = mutableMapOf<String, StickyEventBus<*>>()
+    private val busMap = ConcurrentHashMap<String, EventBus<*>>()
+    private val busStickMap = ConcurrentHashMap<String, StickyEventBus<*>>()
 
     fun init(logger: ILogger? = null) {
         LogUtils.setLogger(logger)
